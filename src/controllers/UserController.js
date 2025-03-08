@@ -6,9 +6,10 @@ class User {
     static async getUser(req, res){
         try {
             const user = await prisma.User.findUnique({
-                id: ''
+                where: {
+                    email: req.params.email
+                }
             })
-
             res.status(200).json(user)
 
         } catch (error) {
